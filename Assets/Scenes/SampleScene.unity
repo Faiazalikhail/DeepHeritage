@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 33835229}
   - component: {fileID: 33835230}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 65869148}
   - component: {fileID: 65869150}
   - component: {fileID: 65869149}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: higher Grounds (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 87768222}
   - component: {fileID: 87768224}
   - component: {fileID: 87768223}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89314960}
   - component: {fileID: 89314961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,6 +520,8 @@ GameObject:
   - component: {fileID: 160438039}
   - component: {fileID: 160438038}
   - component: {fileID: 160438042}
+  - component: {fileID: 160438043}
+  - component: {fileID: 160438044}
   m_Layer: 0
   m_Name: MarioIdle
   m_TagString: Untagged
@@ -667,10 +669,12 @@ Transform:
   m_GameObject: {fileID: 160438037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.91, y: -3.5, z: 0}
+  m_LocalPosition: {x: 4.3, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 582820100}
+  - {fileID: 1577600912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &160438042
@@ -685,8 +689,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc9cd037f9722d4989010ce48eb3947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 7
+  groundCheckRadius: 0.02
+  floatGravity: 0.5
+--- !u!95 &160438043
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160438037}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d39849053b88154da2d5950d553ec11, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &160438044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160438037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9f28b01f33dc64faf3fd4eb0918619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::shoot
+  initalShotVelocity: {x: 3, y: 3}
+  spawnPointLeft: {fileID: 1577600912}
+  spawnPointRight: {fileID: 582820100}
+  projectilePrefab: {fileID: 3333929606802241921, guid: 40f4eedc8272db4458e78d99ee471bb6, type: 3}
 --- !u!1 &222224173
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,9 +744,9 @@ GameObject:
   m_Component:
   - component: {fileID: 222224174}
   - component: {fileID: 222224175}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Clouds
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -775,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229096441}
   - component: {fileID: 229096442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +902,7 @@ GameObject:
   - component: {fileID: 279638068}
   m_Layer: 0
   m_Name: Clouds (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -931,7 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284365251}
   - component: {fileID: 284365252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309666156}
   - component: {fileID: 309666157}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1089,7 +1136,7 @@ GameObject:
   - component: {fileID: 393049769}
   m_Layer: 0
   m_Name: Tunnels (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1167,6 +1214,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1286,11 +1334,59 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 5.1, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60df2e0139fe8fb42bb6b141b6f6d62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  Target: {fileID: 160438041}
+  smoothTime: 0.3
+  deadZoneX: 2
+  minX: -0.09
+  maxX: 191.8
+--- !u!1 &582820099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582820100}
+  m_Layer: 0
+  m_Name: RightLaunchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582820100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582820099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.394, y: 0.385, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 160438041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595098680
 GameObject:
@@ -1303,7 +1399,7 @@ GameObject:
   - component: {fileID: 595098681}
   - component: {fileID: 595098683}
   - component: {fileID: 595098682}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: higher Grounds (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,7 +1537,7 @@ GameObject:
   - component: {fileID: 595285979}
   m_Layer: 0
   m_Name: Stones (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1601,7 +1697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632306770}
   - component: {fileID: 632306771}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1681,7 +1777,7 @@ GameObject:
   - component: {fileID: 781668432}
   m_Layer: 0
   m_Name: Tunnels
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1759,7 +1855,7 @@ GameObject:
   - component: {fileID: 818773067}
   m_Layer: 0
   m_Name: Tunnels (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1901,7 +1997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 873778751}
   - component: {fileID: 873778752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1980,7 +2076,7 @@ GameObject:
   - component: {fileID: 925270561}
   - component: {fileID: 925270563}
   - component: {fileID: 925270562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2076,7 +2172,7 @@ GameObject:
   - component: {fileID: 939157210}
   m_Layer: 0
   m_Name: Stones (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2152,7 +2248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968585610}
   - component: {fileID: 968585611}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2327,7 @@ GameObject:
   - component: {fileID: 997423317}
   - component: {fileID: 997423319}
   - component: {fileID: 997423318}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2327,7 +2423,7 @@ GameObject:
   - component: {fileID: 1061256485}
   m_Layer: 0
   m_Name: RIghtWall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2405,7 +2501,7 @@ GameObject:
   - component: {fileID: 1085182356}
   m_Layer: 0
   m_Name: Tunnels (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2483,7 +2579,7 @@ GameObject:
   - component: {fileID: 1197811289}
   m_Layer: 0
   m_Name: Clouds (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2560,7 +2656,7 @@ GameObject:
   - component: {fileID: 1206942835}
   - component: {fileID: 1206942837}
   - component: {fileID: 1206942836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2656,7 +2752,7 @@ GameObject:
   - component: {fileID: 1416490298}
   m_Layer: 0
   m_Name: LeftWall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2732,7 +2828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427732600}
   - component: {fileID: 1427732601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2800,6 +2896,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 56.962852, y: 1.9178188}
   m_EdgeRadius: 0
+--- !u!1 &1577600911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577600912}
+  m_Layer: 0
+  m_Name: LeftLaunchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577600912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577600911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.428, y: 0.402, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 160438041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1609440879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,7 +2938,7 @@ GameObject:
   - component: {fileID: 1609440880}
   - component: {fileID: 1609440882}
   - component: {fileID: 1609440881}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: higher Grounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2949,7 +3076,7 @@ GameObject:
   - component: {fileID: 1691909102}
   m_Layer: 0
   m_Name: Tunnels (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3027,7 +3154,7 @@ GameObject:
   - component: {fileID: 1771481187}
   m_Layer: 0
   m_Name: Clouds (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3104,7 +3231,7 @@ GameObject:
   - component: {fileID: 1801106819}
   - component: {fileID: 1801106821}
   - component: {fileID: 1801106820}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3200,7 +3327,7 @@ GameObject:
   - component: {fileID: 1812884316}
   m_Layer: 0
   m_Name: Stones
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3368,7 +3495,7 @@ GameObject:
   - component: {fileID: 2007838010}
   m_Layer: 0
   m_Name: Tunnels (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3445,7 +3572,7 @@ GameObject:
   - component: {fileID: 2017618551}
   - component: {fileID: 2017618553}
   - component: {fileID: 2017618552}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3540,7 +3667,7 @@ GameObject:
   - component: {fileID: 2089820831}
   - component: {fileID: 2089820833}
   - component: {fileID: 2089820832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3635,7 +3762,7 @@ GameObject:
   - component: {fileID: 2133104815}
   - component: {fileID: 2133104817}
   - component: {fileID: 2133104816}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingColider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
