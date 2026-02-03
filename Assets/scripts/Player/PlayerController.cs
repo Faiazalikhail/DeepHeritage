@@ -1,4 +1,4 @@
-using System.Collections; // Required for using Coroutines (timed events)
+﻿using System.Collections; // Required for using Coroutines (timed events)
 using UnityEngine; // Required for Unity-specific functions
 
 // Ensures these components exist on the GameObject so the script doesn't crash
@@ -162,4 +162,67 @@ public class PlayerController : MonoBehaviour
     {
         // Do nothing! The Coroutine handles the timing now.
     }
+
+
+    // --- SUPERPOWER FUNCTIONS ---
+
+    // RED: Super Speed
+    public void ActivateSpeedBoost()
+    {
+        StartCoroutine(SpeedRoutine());
+    }
+
+    IEnumerator SpeedRoutine()
+    {
+        Debug.Log("Speed Boost STARTED");
+        moveSpeed = 10f; 
+        _sr.color = Color.red;
+
+        yield return new WaitForSeconds(5f);
+
+        moveSpeed = 5f; 
+        _sr.color = Color.white;
+        Debug.Log("Speed Boost ENDED");
+    }
+
+    // GREEN: Super Jump (Adjusted)
+    public void ActivateJumpBoost()
+    {
+        StartCoroutine(JumpRoutine());
+    }
+
+    IEnumerator JumpRoutine()
+    {
+        Debug.Log("Jump Boost STARTED");
+        jumpForce = 10f;
+        _sr.color = Color.green;
+
+        yield return new WaitForSeconds(5f);
+
+        jumpForce = 7f; 
+        _sr.color = Color.white;
+        Debug.Log("Jump Boost ENDED");
+    }
+
+    // BLUE: Zero Gravity
+    public void ActivateFloatBoost()
+    {
+        StartCoroutine(FloatRoutine());
+    }
+
+    IEnumerator FloatRoutine()
+    {
+        Debug.Log("Float Boost STARTED");
+        defaultGravity = 0.5f; 
+        _rb.gravityScale = defaultGravity;
+        _sr.color = Color.cyan;
+
+        yield return new WaitForSeconds(5f);
+
+        defaultGravity = 1f;
+        _rb.gravityScale = defaultGravity;
+        _sr.color = Color.white;
+        Debug.Log("Float Boost ENDED");
+    }
+
 }
