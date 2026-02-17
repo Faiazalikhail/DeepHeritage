@@ -18,17 +18,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    // --- THIS IS THE NEW PART ---
-    //void Update()
-    //{
-    //    // When you press the Fire button (Left Ctrl or Mouse Click)...
-    //    if (Input.GetButtonDown("Fire1"))
-    //    {
-    //        // ...run the Fire function below!
-    //        Fire();
-    //    }
-    //}
-    // -----------------------------
+   
 
     public void Fire()
     {

@@ -17,9 +17,20 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Obstacle"))
+        // 1. Existing Wall Logic
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Destroy (gameObject);
+            Destroy(gameObject);
+        }
+
+        
+        // Check if the object we hit has the "BaseEnemy" script
+        BaseEnemy enemy = collision.gameObject.GetComponent<BaseEnemy>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(); // Deal 1 damage
+            Destroy(gameObject); // Destroy the bullet so it doesn't go through
         }
     }
 }

@@ -4,8 +4,14 @@ using UnityEngine; // Required for Unity-specific functions
 // Ensures these components exist on the GameObject so the script doesn't crash
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
+
+
+
 public class PlayerController : MonoBehaviour
 {
+
+    public bool isDead = false;
+
     // --- MOVEMENT SETTINGS ---
     public LayerMask groundLayer;       // Which objects count as "Ground" (e.g., floor, platforms)
     public float moveSpeed = 5f;        // How fast Mario moves horizontally
@@ -224,5 +230,24 @@ public class PlayerController : MonoBehaviour
         _sr.color = Color.white;
         Debug.Log("Float Boost ENDED");
     }
+    //Damage logic for mario 
+    public void TakeDamage()
+    {
+        if (isDead) return;
 
+        Debug.Log("Mario Died!");
+        isDead = true;
+
+        // Play death animation if you have one
+        // anim.SetTrigger("Death");
+
+        // Disable movement
+        moveSpeed = 0;
+        jumpForce = 0;
+        _rb.linearVelocity = Vector2.zero;
+
+        // Optional: Reload scene after 2 seconds
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
 }
+

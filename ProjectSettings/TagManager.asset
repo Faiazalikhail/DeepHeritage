@@ -9,6 +9,8 @@ TagManager:
   - BluePU
   - GreenPU
   - RedPU
+  - Barrier
+  - Projectile
   layers:
   - Default
   - TransparentFX

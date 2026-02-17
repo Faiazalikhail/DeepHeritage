@@ -2095,7 +2095,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -2109,7 +2109,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -2130,7 +2130,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -4129,7 +4129,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_89
+      name: TrudProjectile
       rect:
         serializedVersion: 2
         x: 64
@@ -9519,15 +9519,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_334
+      name: Turd1
       rect:
         serializedVersion: 2
         x: 799
         y: 311
         width: 17
         height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9541,15 +9541,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_335
+      name: TurdShoot1
       rect:
         serializedVersion: 2
         x: 822
         y: 311
         width: 26
         height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9563,15 +9563,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_336
+      name: TurdShoot2
       rect:
         serializedVersion: 2
         x: 851
         y: 311
         width: 26
         height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9585,15 +9585,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_337
+      name: Turd2
       rect:
         serializedVersion: 2
         x: 880
         y: 311
         width: 18
         height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -12203,15 +12203,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_456
+      name: WalkerEnemy
       rect:
         serializedVersion: 2
         x: 26
         y: 122
         width: 18
         height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -12225,15 +12225,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_457
+      name: WalkerEnemy2
       rect:
         serializedVersion: 2
         x: 45
         y: 122
         width: 18
         height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -12276,8 +12276,8 @@ TextureImporter:
         y: 121
         width: 19
         height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -13149,15 +13149,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_499
+      name: WalkerEnemy3
       rect:
         serializedVersion: 2
         x: 249
         y: 119
         width: 18
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -17284,6 +17284,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Sprite_Enemies_90
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 248
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8854f3fe90523f444b5742b057c9a6ab
+      internalID: -767790736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -17561,10 +17583,6 @@ TextureImporter:
       Sprite_Enemies_331: -2074944620527126796
       Sprite_Enemies_332: -5660035332088033470
       Sprite_Enemies_333: -7888178152231183674
-      Sprite_Enemies_334: 6927981411972597962
-      Sprite_Enemies_335: 4627375648895073383
-      Sprite_Enemies_336: 695433566626481274
-      Sprite_Enemies_337: 6826037723698911918
       Sprite_Enemies_338: 8761235641639183874
       Sprite_Enemies_339: -1521151032509392861
       Sprite_Enemies_34: -8577990633489452866
@@ -17696,8 +17714,6 @@ TextureImporter:
       Sprite_Enemies_453: 765632271854523857
       Sprite_Enemies_454: -4679266561285187615
       Sprite_Enemies_455: -3308117943003608857
-      Sprite_Enemies_456: 4096748978658626181
-      Sprite_Enemies_457: -4655428008840287938
       Sprite_Enemies_458: -4978260438847950106
       Sprite_Enemies_459: 8586962421401669945
       Sprite_Enemies_46: -7065418871120813663
@@ -17743,7 +17759,6 @@ TextureImporter:
       Sprite_Enemies_496: -41123353217939383
       Sprite_Enemies_497: 2616282857753107902
       Sprite_Enemies_498: 7581821725142446528
-      Sprite_Enemies_499: -6086775892676988321
       Sprite_Enemies_5: -8418568836476118505
       Sprite_Enemies_50: -1605364701122387928
       Sprite_Enemies_500: 7950262757088144532
@@ -17974,8 +17989,8 @@ TextureImporter:
       Sprite_Enemies_86: -2669691847292180851
       Sprite_Enemies_87: -7185912387340643949
       Sprite_Enemies_88: -5709072872950518472
-      Sprite_Enemies_89: 1790661336946998242
       Sprite_Enemies_9: -1403785383596086482
+      Sprite_Enemies_90: -767790736
       Sprite_Enemies_91: -8786154004313607284
       Sprite_Enemies_92: 7112116234620641092
       Sprite_Enemies_93: -6675487841054675221
@@ -17985,6 +18000,14 @@ TextureImporter:
       Sprite_Enemies_97: -5235741533605767461
       Sprite_Enemies_98: -3146763840220451440
       Sprite_Enemies_99: 3848975548304371034
+      TrudProjectile: 1790661336946998242
+      Turd1: 6927981411972597962
+      Turd2: 6826037723698911918
+      TurdShoot1: 4627375648895073383
+      TurdShoot2: 695433566626481274
+      WalkerEnemy: 4096748978658626181
+      WalkerEnemy2: -4655428008840287938
+      WalkerEnemy3: -6086775892676988321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
