@@ -18,14 +18,15 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // 1. Hurt Mario
             PlayerController mario = collision.GetComponent<PlayerController>();
             if (mario != null)
             {
-                mario.TakeDamage();
+                Vector2 direction =
+                    (collision.transform.position - transform.position).normalized;
+
+                mario.TakeDamage(direction);
             }
 
-            // 2. Destroy the bullet
             Destroy(gameObject);
         }
     }

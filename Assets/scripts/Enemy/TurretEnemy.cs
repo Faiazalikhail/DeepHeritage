@@ -22,17 +22,17 @@ public class TurretEnemy : BaseEnemy
     {
         if (player == null) return;
 
-        // 1. Face the Player (Flip Logic)
+        // Face the Player
         if (player.position.x > transform.position.x)
         {
-            sr.flipX = false; // Face Right (assuming sprite faces left by default)
+            sr.flipX = false;
         }
         else
         {
-            sr.flipX = true; // Face Left
+            sr.flipX = true;
         }
 
-        // 2. Check Range & Shoot
+        // Check Range & Shoot
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= detectionRange)
         {
@@ -48,34 +48,50 @@ public class TurretEnemy : BaseEnemy
     {
         if (projectilePrefab != null && firePoint != null)
         {
-            // 1. Create the bullet
             GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-            // 2. Get the bullet's script
             EnemyProjectile bulletScript = bullet.GetComponent<EnemyProjectile>();
 
-            // 3. FORCE DIRECTION
-            // If the Turret sprite is flipped (facing RIGHT), bullet goes RIGHT (Positive Speed)
-            if (sr.flipX == true)
+            // SWAPPED THE SIGNS HERE!
+            if (sr.flipX == false)
             {
-                bulletScript.speed = Mathf.Abs(bulletScript.speed); // POSITIVE (Right)
+                bulletScript.speed = -Mathf.Abs(bulletScript.speed); // Now goes Left
             }
             else
             {
-                // If Turret is normal (facing LEFT), bullet goes LEFT (Negative Speed)
-                bulletScript.speed = -Mathf.Abs(bulletScript.speed); // NEGATIVE (Left)
+                bulletScript.speed = Mathf.Abs(bulletScript.speed); // Now goes Right
             }
         }
     }
 
-    // 3. DIE when hit by Mario's Projectile
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Assuming Mario's bullet is tagged "Projectile" or "PlayerProjectile"
         if (collision.CompareTag("Projectile"))
         {
-            Destroy(collision.gameObject); // Destroy the bullet
-            Die(); // Die instantly
+            Destroy(collision.gameObject);
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            ContactPoint2D contact = collision.GetContact(0);
+
+            if (contact.normal.y < -0.5f)
+            {
+                Die();
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+            }
+            else
+            {
+                PlayerController mario = collision.gameObject.GetComponent<PlayerController>();
+                if (mario != null)
+                {
+                    Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+                    mario.TakeDamage(hitDirection);
+                }
+            }
         }
     }
 }

@@ -799,7 +799,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_24
+      name: MarioDeath2
       rect:
         serializedVersion: 2
         x: 0
@@ -821,10 +821,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_25
+      name: MarioDeath3
       rect:
         serializedVersion: 2
-        x: 26
+        x: 25
         y: 54
         width: 26
         height: 20
@@ -843,7 +843,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_26
+      name: MarioDeath4
       rect:
         serializedVersion: 2
         x: 57
@@ -865,7 +865,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_27
+      name: MarioDeath5
       rect:
         serializedVersion: 2
         x: 93
@@ -1349,7 +1349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MarioAttack3
+      name: MarioDeath1
       rect:
         serializedVersion: 2
         x: 97
@@ -1371,7 +1371,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_50
+      name: MarioHit1
       rect:
         serializedVersion: 2
         x: 122
@@ -1393,7 +1393,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_51
+      name: MarioHit2
       rect:
         serializedVersion: 2
         x: 143
@@ -1415,7 +1415,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Mario_52
+      name: MarioHit3
       rect:
         serializedVersion: 2
         x: 164
@@ -1652,15 +1652,22 @@ TextureImporter:
     nameFileIdTable:
       MarioAttack1: 3302078408146908689
       MarioAttack2: -4040994371160570336
-      MarioAttack3: 2070263079612885921
       MarioCrouch: 1357806328429647872
       MarioCrouch2: -598077030875622236
+      MarioDeath1: 2070263079612885921
+      MarioDeath2: 1855175835024724854
+      MarioDeath3: -3598681989761177212
+      MarioDeath4: 7762986594224042539
+      MarioDeath5: -1724382975095085423
       MarioFall: 5693412132100505836
       MarioFloat1: -991126873710766664
       MarioFloat2: -2451452407061476743
       MarioFloat3: -9079682761693699110
       MarioFloat4: 102199271187479275
       MarioFloat5: 4596178438584576817
+      MarioHit1: -5021473000565013323
+      MarioHit2: -3917910848853407703
+      MarioHit3: 2024578721505582386
       MarioIdle: 2041030438
       MarioJump: -7207716073158996441
       MarioWalk1: 7535359878243092818
@@ -1677,10 +1684,6 @@ TextureImporter:
       Sprite_Mario_21: -4629119407898994041
       Sprite_Mario_22: -5511660270334715914
       Sprite_Mario_23: 6347872850137420558
-      Sprite_Mario_24: 1855175835024724854
-      Sprite_Mario_25: -3598681989761177212
-      Sprite_Mario_26: 7762986594224042539
-      Sprite_Mario_27: -1724382975095085423
       Sprite_Mario_28: 4008937936191787000
       Sprite_Mario_29: 3336705031637967656
       Sprite_Mario_3: 1554904934580016266
@@ -1702,9 +1705,6 @@ TextureImporter:
       Sprite_Mario_44: 1329661449039804243
       Sprite_Mario_45: 3354623957607304124
       Sprite_Mario_46: 7368133104323931243
-      Sprite_Mario_50: -5021473000565013323
-      Sprite_Mario_51: -3917910848853407703
-      Sprite_Mario_52: 2024578721505582386
       Sprite_Mario_58: -223910129502012368
       Sprite_Mario_59: -7734174553045002093
       Sprite_Mario_60: 1622122130505264950
