@@ -51,14 +51,14 @@ public class TurretEnemy : BaseEnemy
             GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             EnemyProjectile bulletScript = bullet.GetComponent<EnemyProjectile>();
 
-            // SWAPPED THE SIGNS HERE!
+            
             if (sr.flipX == false)
             {
-                bulletScript.speed = -Mathf.Abs(bulletScript.speed); // Now goes Left
+                bulletScript.speed = -Mathf.Abs(bulletScript.speed); 
             }
             else
             {
-                bulletScript.speed = Mathf.Abs(bulletScript.speed); // Now goes Right
+                bulletScript.speed = Mathf.Abs(bulletScript.speed);
             }
         }
     }

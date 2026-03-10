@@ -2,6 +2,7 @@
 
 public class Collectible : MonoBehaviour
 {
+    public AudioClip coinSound;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -26,7 +27,7 @@ public class Collectible : MonoBehaviour
                     mario.ActivateFloatBoost();
                 }
             }
-
+            AudioSource.PlayClipAtPoint(coinSound, transform.position);
             Destroy(gameObject);
         }
     }

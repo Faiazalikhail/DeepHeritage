@@ -844,6 +844,10 @@ MonoBehaviour:
   bombGravity: 10
   invincibleDuration: 3
   knockbackForce: 8
+  deathSound: {fileID: 8300000, guid: 8899bb3955bbb8a47ac9161567383fce, type: 3}
+  jumpSound: {fileID: 8300000, guid: 414b2bff6a175954fa8a84f1788b2944, type: 3}
+  kickSound: {fileID: 8300000, guid: 3172a7c52ecddde4bb87aeab9c93d80b, type: 3}
+  powerUpSound: {fileID: 8300000, guid: 5b0c952ea71bca6469a15c8773b39818, type: 3}
 --- !u!95 &160438043
 Animator:
   serializedVersion: 7
@@ -1502,6 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretEnemy
   maxHealth: 1
+  enemyDeathSound: {fileID: 8300000, guid: 72f5e821e86b3684e85219723b8df022, type: 3}
   detectionRange: 8
   fireRate: 2
   projectilePrefab: {fileID: 6930728786780097717, guid: fd8047aa2ab7e16428de4613c5e40dab, type: 3}
@@ -3058,6 +3063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WalkerEnemy
   maxHealth: 1
+  enemyDeathSound: {fileID: 8300000, guid: 72f5e821e86b3684e85219723b8df022, type: 3}
   moveSpeed: 2
 --- !u!1 &781668430
 GameObject:

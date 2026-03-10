@@ -25,15 +25,19 @@ public class PlayerController : MonoBehaviour
     public float invincibleDuration = 3f;
     public float knockbackForce = 8f;
 
-    // --- COMPONENT REFERENCES ---
+    // --- AUDIO SETTINGS ---
+    [Header("Audio Settings")]
+    public AudioClip deathSound;   // Slot for smw_lost_a_life
+    public AudioClip jumpSound;    // Slot for smw_jump
+    public AudioClip kickSound;    // Slot for smw_kick
+    public AudioClip powerUpSound; // Slot for smw_power-up
+    // ------------------------------
+
     private Rigidbody2D _rb;
     private Collider2D _collider;
     private SpriteRenderer _sr;
     private Animator _animator;
 
-    // NOTE: _groundCheck has been completely deleted to fix the NullReference bug!
-
-    // --- STATE VARIABLES ---
     private bool _isGrounded = false;
     private bool _isAttacking = false;
     private bool _wasFloating = false;
@@ -54,7 +58,6 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if (_isHit) return;
 
-        // THE FIX: Direct Physics Check at Mario's feet!
         Vector2 feetPosition = new Vector2(_collider.bounds.center.x, _collider.bounds.min.y);
         _isGrounded = Physics2D.OverlapCircle(feetPosition, groundCheckRadius, groundLayer);
 
@@ -63,7 +66,6 @@ public class PlayerController : MonoBehaviour
         bool crouchPressed = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         bool floatInput = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
 
-        // Attack
         if (Input.GetKeyDown(KeyCode.LeftControl) && !_isAttacking)
         {
             StartCoroutine(AttackRoutine());
@@ -73,25 +75,21 @@ public class PlayerController : MonoBehaviour
 
         Vector2 velocity = _rb.linearVelocity;
 
-        if (_isAttacking)
-            velocity.x = 0;
-        else
-            velocity.x = horizontalInput * moveSpeed;
+        if (_isAttacking) velocity.x = 0;
+        else velocity.x = horizontalInput * moveSpeed;
 
-        if (crouchPressed && _isGrounded)
-            velocity.x = 0;
+        if (crouchPressed && _isGrounded) velocity.x = 0;
 
         _rb.linearVelocity = velocity;
 
-        // Jump
         if (jumpInput && _isGrounded)
         {
             _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            // Play Jump Sound
+            if (jumpSound != null) AudioSource.PlayClipAtPoint(jumpSound, Camera.main.transform.position);
         }
 
-        // Floating logic
-        if (_isGrounded)
-            _wasFloating = false;
+        if (_isGrounded) _wasFloating = false;
 
         if (!_isGrounded && floatInput)
         {
@@ -110,7 +108,6 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Floating", false);
         }
 
-        // Animator updates
         _animator.SetBool("isGrounded", _isGrounded);
         _animator.SetFloat("moveInput", Mathf.Abs(horizontalInput));
         _animator.SetFloat("yVel", _rb.linearVelocity.y);
@@ -119,8 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void SpriteFlip(float horizontalInput)
     {
-        if (horizontalInput != 0)
-            _sr.flipX = (horizontalInput < 0);
+        if (horizontalInput != 0) _sr.flipX = (horizontalInput < 0);
     }
 
     IEnumerator AttackRoutine()
@@ -128,10 +124,11 @@ public class PlayerController : MonoBehaviour
         _isAttacking = true;
         _animator.SetTrigger("Attack");
 
-        if (_isGrounded)
-            yield return new WaitForSeconds(1f);
-        else
-            yield return new WaitUntil(() => _isGrounded);
+        // Play Kick Sound
+        if (kickSound != null) AudioSource.PlayClipAtPoint(kickSound, Camera.main.transform.position);
+
+        if (_isGrounded) yield return new WaitForSeconds(1f);
+        else yield return new WaitUntil(() => _isGrounded);
 
         _isAttacking = false;
     }
@@ -140,10 +137,7 @@ public class PlayerController : MonoBehaviour
 
     // ================= DAMAGE & DEATH SYSTEM =================
 
-    public void TakeDamage()
-    {
-        TakeDamage(Vector2.up);
-    }
+    public void TakeDamage() { TakeDamage(Vector2.up); }
 
     public void TakeDamage(Vector2 hitDirection)
     {
@@ -192,6 +186,8 @@ public class PlayerController : MonoBehaviour
     {
         isDead = true;
 
+        if (deathSound != null) AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+
         _collider.enabled = false;
 
         _rb.gravityScale = 3f;
@@ -204,15 +200,16 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.TriggerGameOver();
-        }
+        if (GameManager.Instance != null) GameManager.Instance.TriggerGameOver();
     }
 
     // ================= POWER UPS =================
+    private void PlayPowerUpSound()
+    {
+        if (powerUpSound != null) AudioSource.PlayClipAtPoint(powerUpSound, Camera.main.transform.position);
+    }
 
-    public void ActivateSpeedBoost() { StartCoroutine(SpeedRoutine()); }
+    public void ActivateSpeedBoost() { PlayPowerUpSound(); StartCoroutine(SpeedRoutine()); }
     IEnumerator SpeedRoutine()
     {
         float originalSpeed = moveSpeed; moveSpeed = 10f; _sr.color = Color.red;
@@ -220,7 +217,7 @@ public class PlayerController : MonoBehaviour
         moveSpeed = originalSpeed; _sr.color = Color.white;
     }
 
-    public void ActivateJumpBoost() { StartCoroutine(JumpRoutine()); }
+    public void ActivateJumpBoost() { PlayPowerUpSound(); StartCoroutine(JumpRoutine()); }
     IEnumerator JumpRoutine()
     {
         float originalJump = jumpForce; jumpForce = 25f; _sr.color = Color.green;
@@ -228,7 +225,7 @@ public class PlayerController : MonoBehaviour
         jumpForce = originalJump; _sr.color = Color.white;
     }
 
-    public void ActivateFloatBoost() { StartCoroutine(FloatRoutine()); }
+    public void ActivateFloatBoost() { PlayPowerUpSound(); StartCoroutine(FloatRoutine()); }
     IEnumerator FloatRoutine()
     {
         float originalGravity = defaultGravity; defaultGravity = 0.5f; _rb.gravityScale = defaultGravity; _sr.color = Color.cyan;
