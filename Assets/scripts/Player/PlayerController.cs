@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     // --- MOVEMENT SETTINGS ---
     public LayerMask groundLayer;
     public float moveSpeed = 5f;
-    public float jumpForce = 20f; // Default raised, but CHECK YOUR INSPECTOR!
+    public float jumpForce = 20f;
     public float groundCheckRadius = 0.2f;
 
     // --- AERIAL SETTINGS ---
@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private Collider2D _collider;
     private SpriteRenderer _sr;
     private Animator _animator;
-    private GroundCheck _groundCheck;
+
+    // NOTE: _groundCheck has been completely deleted to fix the NullReference bug!
 
     // --- STATE VARIABLES ---
     private bool _isGrounded = false;
@@ -44,8 +45,6 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
 
-        _groundCheck = new GroundCheck(_collider, _rb, groundCheckRadius, groundLayer);
-
         defaultGravity = _rb.gravityScale;
         floatGravity = defaultGravity / 3f;
     }
@@ -55,7 +54,9 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if (_isHit) return;
 
-        _isGrounded = _groundCheck.IsGrounded();
+        // THE FIX: Direct Physics Check at Mario's feet!
+        Vector2 feetPosition = new Vector2(_collider.bounds.center.x, _collider.bounds.min.y);
+        _isGrounded = Physics2D.OverlapCircle(feetPosition, groundCheckRadius, groundLayer);
 
         float horizontalInput = Input.GetAxis("Horizontal");
         bool jumpInput = Input.GetButtonDown("Jump");
@@ -166,10 +167,8 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance != null) GameManager.Instance.LoseLife();
 
-        // 1. Play Hit Animation safely using a Trigger!
         _animator.SetTrigger("Hit");
 
-        // 2. Knockback
         _rb.linearVelocity = Vector2.zero;
         float pushDir = (hitDirection.x == 0) ? (_sr.flipX ? 1f : -1f) : hitDirection.x;
         _rb.AddForce(new Vector2(pushDir * knockbackForce, knockbackForce), ForceMode2D.Impulse);
@@ -177,7 +176,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         _isHit = false;
 
-        // Visual Flashing
         float flashTimer = 0.4f;
         while (flashTimer < invincibleDuration)
         {
@@ -196,10 +194,9 @@ public class PlayerController : MonoBehaviour
 
         _collider.enabled = false;
 
-        // DYNAMIC DEATH PHYSICS: Kick him up and slightly backward!
         _rb.gravityScale = 3f;
         _rb.linearVelocity = Vector2.zero;
-        float popDirection = _sr.flipX ? 5f : -5f; // Bounce opposite to where he is facing
+        float popDirection = _sr.flipX ? 5f : -5f;
         _rb.AddForce(new Vector2(popDirection, 20f), ForceMode2D.Impulse);
 
         _sr.flipY = true;
